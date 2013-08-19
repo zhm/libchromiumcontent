@@ -1,0 +1,12 @@
+Index: third_party/WebKit/Source/core/fileapi/File.idl
+===================================================================
+--- third_party/WebKit/Source/core/fileapi/File.idl	(revision 153022)
++++ third_party/WebKit/Source/core/fileapi/File.idl	(working copy)
+@@ -24,6 +24,7 @@
+  */
+ 
+ interface File : Blob {
++    readonly attribute DOMString path;
+     readonly attribute DOMString name;
+     readonly attribute Date lastModifiedDate;
+     [EnabledAtRuntime=directoryUpload] readonly attribute DOMString webkitRelativePath;
