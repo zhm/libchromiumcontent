@@ -1,0 +1,12 @@
+Index: net/url_request/url_request_job.h
+===================================================================
+--- net/url_request/url_request_job.h	(revision 226629)
++++ net/url_request/url_request_job.h	(working copy)
+@@ -265,6 +265,7 @@
+   void SetBlockedOnDelegate();
+   void SetUnblockedOnDelegate();
+ 
++ public:
+   // Called to read raw (pre-filtered) data from this Job.
+   // If returning true, data was read from the job.  buf will contain
+   // the data, and bytes_read will receive the number of bytes read.
