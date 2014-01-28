@@ -42,51 +42,13 @@
     },
     {
       'target_name': 'chromiumcontent',
-      'type': 'shared_library',
+      'type': 'none',
       'dependencies': [
         '<(DEPTH)/base/base.gyp:base_prefs',
         '<(DEPTH)/content/content.gyp:content',
         '<(DEPTH)/content/content.gyp:content_app_both',
         '<(DEPTH)/content/content_shell_and_tests.gyp:content_shell_pak',
         '<(DEPTH)/net/net.gyp:net_with_v8',
-      ],
-      'sources': [
-        'empty.cc',
-      ],
-      'conditions': [
-        ['OS=="win"', {
-          'sources': [
-            '<(DEPTH)/base/win/dllmain.cc',
-          ],
-          'configurations': {
-            'Common_Base': {
-              'msvs_settings': {
-                'VCLinkerTool': {
-                  'AdditionalOptions': [
-                    '/WX', # Warnings as errors
-                  ],
-                },
-              },
-            },
-            'Debug_Base': {
-              'msvs_settings': {
-                'VCLinkerTool': {
-                  # We're too big to link incrementally. chrome.dll turns this
-                  # off in (most? all?) cases, too.
-                  'LinkIncremental': '1',
-                },
-              },
-            },
-          },
-        }],
-        ['OS=="mac"', {
-          'xcode_settings': {
-            'OTHER_LDFLAGS': [
-              '-all_load',
-            ],
-            'LD_DYLIB_INSTALL_NAME': '@rpath/libchromiumcontent.dylib',
-          },
-        }],
       ],
     },
     {
