@@ -9,13 +9,17 @@ VENDOR_DIR = os.path.join(SOURCE_ROOT, 'vendor')
 OUT_DIR = os.path.join(VENDOR_DIR, 'chromium', 'src', 'out')
 TARGETS = ['chromiumcontent_all']
 LEAF_EXTENSIONS = frozenset([
+    '.c',
     '.cc',
     '.cpp',
     '.css',
+    '.def',
     '.grd',
     '.h',
+    '.idl',
     '.js',
     '.o',
+    '.obj',
     '.pak',
     '.png',
     '.py',
