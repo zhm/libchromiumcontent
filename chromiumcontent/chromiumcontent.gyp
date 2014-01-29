@@ -50,6 +50,8 @@
         '<(DEPTH)/content/content.gyp:content_app_both',
         '<(DEPTH)/content/content_shell_and_tests.gyp:content_shell_pak',
         '<(DEPTH)/net/net.gyp:net_with_v8',
+        '<(DEPTH)/ui/gfx/gfx.gyp:gfx',
+        '<(DEPTH)/ui/ui.gyp:ui',
       ],
     },
     {
