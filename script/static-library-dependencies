@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+import sys
+
+SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+VENDOR_DIR = os.path.join(SOURCE_ROOT, 'vendor')
+OUT_DIR = os.path.join(VENDOR_DIR, 'chromium', 'src', 'out')
+TARGETS = ['chromiumcontent_all']
+LEAF_EXTENSIONS = frozenset([
+    '.cc',
+    '.cpp',
+    '.css',
+    '.grd',
+    '.h',
+    '.js',
+    '.o',
+    '.pak',
+    '.png',
+    '.py',
+    '.rc',
+    '.xtb',
+])
+LIBRARY_EXTENSION = {
+    'cygwin': '.lib',
+    'darwin': '.a',
+    'linux2': '.a',
+    'win32': '.lib',
+}[sys.platform]
+
+NINJA = os.path.join(VENDOR_DIR, 'depot_tools', 'ninja')
+if sys.platform == 'win32':
+    NINJA = '{0}.exe'.format(NINJA)
+
+
+def main(args):
+    config = args[0]
+    config_dir = os.path.relpath(os.path.join(OUT_DIR, config))
+    os.chdir(config_dir)
+    print '\n'.join(sorted(libraries()))
+
+
+def libraries():
+    targets = TARGETS
+    seen = set(TARGETS)
+    libs = set()
+    while len(targets):
+        deps = dependencies(targets)
+        targets = []
+        for dep in (set(deps) - seen):
+            seen.add(dep)
+            path, ext = os.path.splitext(dep)
+            if ext in LEAF_EXTENSIONS:
+                continue
+            if ext == LIBRARY_EXTENSION:
+                libs.add(dep)
+            targets.append(dep)
+    return libs
+
+
+def dependencies(targets):
+    deps = []
+    skip = True
+    for line in subprocess.check_output([NINJA, '-t', 'query'] + targets).splitlines():
+        if line.startswith('  input: '):
+            skip = False
+        elif line == '  outputs:':
+            skip = True
+        elif not skip and line.startswith('    '):
+            deps.append(line.strip(' |'))
+    return deps
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

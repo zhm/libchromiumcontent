@@ -9,7 +9,8 @@ import sys
 import zipfile
 
 
-SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
+SOURCE_ROOT = os.path.dirname(SCRIPT_DIR)
 DIST_DIR = os.path.join(SOURCE_ROOT, 'dist')
 SRC_DIR = os.path.join(SOURCE_ROOT, 'vendor', 'chromium', 'src')
 OUT_DIR = os.path.join(SRC_DIR, 'out')
@@ -40,39 +41,16 @@ BINARIES = {
     'darwin': [
         'ffmpegsumo.so',
         'libchromiumcontent.dylib',
-        'libtest_support_chromiumcontent.a',
     ],
     'linux': [
         'chrome_sandbox',
         'libffmpegsumo.so',
         os.path.join('lib', 'libchromiumcontent.so'),
-        'libencryptor.a',
-        'libtest_support_chromiumcontent.a',
     ],
     'win32': [
-        'chromiumcontent.dll',
-        'chromiumcontent.dll.lib',
-        'chromiumviews.lib',
         'ffmpegsumo.dll',
         'icudt.dll',
         'libGLESv2.dll',
-        'test_support_chromiumcontent.lib',
-        os.path.join('obj', 'base', 'base_static.lib'),
-        os.path.join('obj', 'base', 'base_static.pdb'),
-        os.path.join('obj', 'base', 'test_support_base.pdb'),
-        os.path.join('obj', 'components', 'encryptor.lib'),
-        os.path.join('obj', 'components', 'encryptor.pdb'),
-        os.path.join('obj', 'content', 'test_support_content.pdb'),
-        os.path.join('obj', 'net', 'net_test_support.pdb'),
-        os.path.join('obj', 'sandbox', 'sandbox_static.lib'),
-        os.path.join('obj', 'sandbox', 'sandbox_static.pdb'),
-        os.path.join('obj', 'testing', 'gtest.pdb'),
-        os.path.join('obj', 'third_party', 'iaccessible2', 'iaccessible2.pdb'),
-        os.path.join('obj', 'third_party', 'libxml', 'libxml.pdb'),
-        os.path.join('obj', 'third_party', 'zlib', 'zlib.pdb'),
-        os.path.join('obj', 'ui', 'compositor', 'compositor.pdb'),
-        os.path.join('obj', 'ui', 'views', 'controls', 'webview', 'webview.pdb'),
-        os.path.join('obj', 'ui', 'web_dialogs', 'web_dialogs.pdb'),
     ],
 }
 
@@ -86,7 +64,6 @@ SYMBOLS = {
     ],
     'win32': [
         'ffmpegsumo.dll.pdb',
-        'chromiumcontent.dll.pdb',
         'libGLESv2.dll.pdb',
     ],
 }
@@ -139,8 +116,13 @@ def copy_binaries():
         config_dir = os.path.join(MAIN_DIR, config)
         mkdir_p(config_dir)
 
-        for binary in BINARIES['all'] + BINARIES[TARGET_PLATFORM]:
+        for binary in BINARIES['all'] + BINARIES[TARGET_PLATFORM] + static_libraries(config):
             shutil.copy2(os.path.join(OUT_DIR, config, binary), config_dir)
+
+
+def static_libraries(config):
+    script = os.path.join(SCRIPT_DIR, 'static-library-dependencies')
+    return subprocess.check_output([sys.executable, script, config]).splitlines()
 
 
 def create_dsym():
