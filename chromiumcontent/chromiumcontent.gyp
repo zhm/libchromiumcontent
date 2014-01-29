@@ -46,12 +46,16 @@
       'dependencies': [
         '<(DEPTH)/base/base.gyp:base',
         '<(DEPTH)/base/base.gyp:base_prefs',
+        '<(DEPTH)/base/base.gyp:base_static',
         '<(DEPTH)/content/content.gyp:content',
         '<(DEPTH)/content/content.gyp:content_app_both',
         '<(DEPTH)/content/content_shell_and_tests.gyp:content_shell_pak',
+        '<(DEPTH)/ipc/ipc.gyp:ipc',
         '<(DEPTH)/net/net.gyp:net_with_v8',
+        '<(DEPTH)/net/net.gyp:net',
         '<(DEPTH)/ui/gfx/gfx.gyp:gfx',
         '<(DEPTH)/ui/ui.gyp:ui',
+        '<(DEPTH)/webkit/common/webkit_common.gyp:webkit_common',
       ],
     },
     {
