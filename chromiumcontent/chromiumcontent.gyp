@@ -44,18 +44,11 @@
       'target_name': 'chromiumcontent',
       'type': 'none',
       'dependencies': [
-        '<(DEPTH)/base/base.gyp:base',
         '<(DEPTH)/base/base.gyp:base_prefs',
-        '<(DEPTH)/base/base.gyp:base_static',
         '<(DEPTH)/content/content.gyp:content',
         '<(DEPTH)/content/content.gyp:content_app_both',
         '<(DEPTH)/content/content_shell_and_tests.gyp:content_shell_pak',
-        '<(DEPTH)/ipc/ipc.gyp:ipc',
         '<(DEPTH)/net/net.gyp:net_with_v8',
-        '<(DEPTH)/net/net.gyp:net',
-        '<(DEPTH)/ui/gfx/gfx.gyp:gfx',
-        '<(DEPTH)/ui/ui.gyp:ui',
-        '<(DEPTH)/webkit/common/webkit_common.gyp:webkit_common',
       ],
     },
     {
@@ -64,6 +57,15 @@
       'dependencies': [
         '<(DEPTH)/base/base.gyp:base_prefs_test_support',
         '<(DEPTH)/content/content_shell_and_tests.gyp:test_support_content',
+      ],
+    },
+    {
+      # This target exists just to persuade gyp/ninja to tell us all of
+      # chromiumcontent's dependent static libraries.
+      'target_name': 'chromiumcontent_shared_fake',
+      'type': 'shared_library',
+      'dependencies': [
+        'chromiumcontent_all',
       ],
     },
   ],
