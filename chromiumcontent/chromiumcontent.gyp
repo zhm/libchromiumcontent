@@ -67,6 +67,9 @@
       'dependencies': [
         'chromiumcontent_all',
       ],
+      'sources': [
+        'dllmain.cc',
+      ],
     },
   ],
   'conditions': [
