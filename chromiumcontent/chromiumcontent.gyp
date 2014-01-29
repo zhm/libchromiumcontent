@@ -44,6 +44,7 @@
       'target_name': 'chromiumcontent',
       'type': 'none',
       'dependencies': [
+        '<(DEPTH)/base/base.gyp:base',
         '<(DEPTH)/base/base.gyp:base_prefs',
         '<(DEPTH)/content/content.gyp:content',
         '<(DEPTH)/content/content.gyp:content_app_both',
