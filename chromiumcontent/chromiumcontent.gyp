@@ -1,6 +1,7 @@
 {
   'variables': {
     'child_dependencies': [
+      '<(DEPTH)/content/content.gyp:content_browser',
       '<(DEPTH)/content/content.gyp:content_gpu',
       '<(DEPTH)/content/content.gyp:content_ppapi_plugin',
       '<(DEPTH)/content/content.gyp:content_renderer',
