@@ -25,8 +25,10 @@ def main(args):
             save_exports(args)
         return retcode
 
-    if '@chromiumcontent.dll.rsp' in args:
-        add_definition_file(args)
+    for dll in ['main', 'child']:
+        if '@chromiumcontent_{0}.dll.rsp'.format(dll) in args:
+            add_definition_file(args)
+            break
     return subprocess.call([sys.executable, WIN_TOOL] + args)
 
 
@@ -69,14 +71,15 @@ def exports_file_for_lib(lib):
 
 def add_definition_file(args):
     rsp = [arg for arg in args if arg.endswith('.rsp')][0][1:]
+    def_path = rsp.replace('.rsp', '.def')
     libs = libs_from_rsp(rsp)
     exports = read_saved_exports_from_libs(libs)
     lines = ['EXPORTS'] + sorted(exports)
-    with open('chromiumcontent.def', 'w') as f:
+    with open(def_path, 'w') as f:
         for line in lines:
             f.write('{0}{1}'.format(line, os.linesep))
     with open(rsp, 'a') as r:
-        r.write('{0}/DEF:chromiumcontent.def{0}'.format(os.linesep))
+        r.write('{0}/DEF:{1}{0}'.format(os.linesep, def_path))
 
 
 def libs_from_rsp(rsp):
