@@ -1,13 +1,32 @@
 {
+  'variables': {
+    'multiple_dll': 0,
+    'child_dependencies': [
+      '<(DEPTH)/content/content.gyp:content_gpu',
+      '<(DEPTH)/content/content.gyp:content_ppapi_plugin',
+      '<(DEPTH)/content/content.gyp:content_renderer',
+      '<(DEPTH)/content/content.gyp:content_worker',
+    ],
+    'conditions': [
+      ['OS=="win"', {
+        'multiple_dll': 1,
+      }],
+    ],
+  },
   'targets': [
     {
       'target_name': 'chromiumcontent_all',
       'type': 'none',
       'dependencies': [
-        'chromiumcontent',
+        'chromiumcontent_main',
         'test_support_chromiumcontent',
       ],
       'conditions': [
+        ['multiple_dll==1', {
+          'dependencies': [
+            'chromiumcontent_child',
+          ],
+        }],
         ['OS=="linux"', {
           'dependencies': [
             '<(DEPTH)/sandbox/sandbox.gyp:chrome_sandbox',
@@ -41,12 +60,12 @@
       ],
     },
     {
-      'target_name': 'chromiumcontent',
+      'target_name': 'chromiumcontent_main',
       'type': 'shared_library',
       'dependencies': [
         '<(DEPTH)/base/base.gyp:base_prefs',
-        '<(DEPTH)/content/content.gyp:content',
-        '<(DEPTH)/content/content.gyp:content_app_both',
+        '<(DEPTH)/content/content.gyp:content_app_browser',
+        '<(DEPTH)/content/content.gyp:content_browser',
         '<(DEPTH)/content/content_shell_and_tests.gyp:content_shell_pak',
         '<(DEPTH)/net/net.gyp:net_with_v8',
       ],
@@ -54,6 +73,16 @@
         'empty.cc',
       ],
       'conditions': [
+        ['multiple_dll!=1', {
+          'product_name': 'chromiumcontent',
+          'dependencies': [
+            '<@(child_dependencies)',
+            '<(DEPTH)/content/content.gyp:content_app_both',
+          ],
+          'dependencies!': [
+            '<(DEPTH)/content/content.gyp:content_app_browser',
+          ],
+        }],
         ['OS=="win"', {
           'sources': [
             '<(DEPTH)/base/win/dllmain.cc',
@@ -189,6 +218,56 @@
     },
   ],
   'conditions': [
+    ['multiple_dll==1', {
+      'targets': [
+        {
+          'target_name': 'chromiumcontent_child',
+          'type': 'shared_library',
+          'dependencies': [
+            '<@(child_dependencies)',
+            '<(DEPTH)/content/content.gyp:content_app_child',
+          ],
+          'sources': [
+            'empty.cc',
+          ],
+          'conditions': [
+            ['OS=="win"', {
+              'sources': [
+                '<(DEPTH)/base/win/dllmain.cc',
+              ],
+              'configurations': {
+                'Common_Base': {
+                  'msvs_settings': {
+                    'VCLinkerTool': {
+                      'AdditionalOptions': [
+                        '/WX', # Warnings as errors
+                      ],
+                    },
+                  },
+                },
+                'Debug_Base': {
+                  'msvs_settings': {
+                    'VCLinkerTool': {
+                      # We're too big to link incrementally. chrome.dll turns this
+                      # off in (most? all?) cases, too.
+                      'LinkIncremental': '1',
+                    },
+                  },
+                },
+              },
+            }],
+            ['OS=="mac"', {
+              'xcode_settings': {
+                'OTHER_LDFLAGS': [
+                  '-all_load',
+                ],
+                'LD_DYLIB_INSTALL_NAME': '@rpath/libchromiumcontent_child.dylib',
+              },
+            }],
+          ],
+        },
+      ],
+    }],
     ['OS=="win"', {
       'targets': [
         {
