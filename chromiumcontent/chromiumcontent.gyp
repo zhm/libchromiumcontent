@@ -60,6 +60,7 @@
         '<(DEPTH)/base/base.gyp:base_prefs',
         '<(DEPTH)/content/content.gyp:content_app_browser',
         '<(DEPTH)/content/content.gyp:content_browser',
+        '<(DEPTH)/content/content.gyp:content_common',
         '<(DEPTH)/content/content_shell_and_tests.gyp:content_shell_pak',
         '<(DEPTH)/net/net.gyp:net_with_v8',
       ],
