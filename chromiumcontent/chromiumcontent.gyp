@@ -1,16 +1,10 @@
 {
   'variables': {
-    'multiple_dll': 0,
     'child_dependencies': [
       '<(DEPTH)/content/content.gyp:content_gpu',
       '<(DEPTH)/content/content.gyp:content_ppapi_plugin',
       '<(DEPTH)/content/content.gyp:content_renderer',
       '<(DEPTH)/content/content.gyp:content_worker',
-    ],
-    'conditions': [
-      ['OS=="win"', {
-        'multiple_dll': 1,
-      }],
     ],
   },
   'targets': [
@@ -22,7 +16,7 @@
         'test_support_chromiumcontent',
       ],
       'conditions': [
-        ['multiple_dll==1', {
+        ['chrome_multiple_dll==1', {
           'dependencies': [
             'chromiumcontent_child',
           ],
@@ -73,7 +67,7 @@
         'empty.cc',
       ],
       'conditions': [
-        ['multiple_dll!=1', {
+        ['chrome_multiple_dll!=1', {
           'product_name': 'chromiumcontent',
           'dependencies': [
             '<@(child_dependencies)',
@@ -218,7 +212,7 @@
     },
   ],
   'conditions': [
-    ['multiple_dll==1', {
+    ['chrome_multiple_dll==1', {
       'targets': [
         {
           'target_name': 'chromiumcontent_child',
