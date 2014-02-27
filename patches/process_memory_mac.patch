@@ -1,0 +1,15 @@
+Index: base/process/memory_mac.mm
+===================================================================
+--- base/process/memory_mac.mm	(revision 235101)
++++ base/process/memory_mac.mm	(working copy)
+@@ -677,8 +677,10 @@
+         << "Failed to get kCFAllocatorMallocZone allocation function.";
+     context->allocate = oom_killer_cfallocator_malloc_zone;
+   } else {
++#if 0
+     NSLog(@"Internals of CFAllocator not known; out-of-memory failures via "
+         "CFAllocator will not result in termination. http://crbug.com/45650");
++#endif
+   }
+ #endif
+ 
