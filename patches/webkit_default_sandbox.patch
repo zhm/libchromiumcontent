@@ -1,0 +1,26 @@
+Index: third_party/WebKit/Source/core/dom/SecurityContext.cpp
+===================================================================
+--- third_party/WebKit/Source/core/dom/SecurityContext.cpp	(revision 161986)
++++ third_party/WebKit/Source/core/dom/SecurityContext.cpp	(working copy)
+@@ -117,6 +117,8 @@
+             flags &= ~SandboxPopups;
+         else if (equalIgnoringCase(sandboxToken, "allow-pointer-lock"))
+             flags &= ~SandboxPointerLock;
++        else if (equalIgnoringCase(sandboxToken, "none"))
++            flags = SandboxNone;
+         else {
+             if (numberOfTokenErrors)
+                 tokenErrors.appendLiteral(", '");
+Index: third_party/WebKit/Source/core/html/HTMLFrameOwnerElement.cpp
+===================================================================
+--- third_party/WebKit/Source/core/html/HTMLFrameOwnerElement.cpp	(revision 161986)
++++ third_party/WebKit/Source/core/html/HTMLFrameOwnerElement.cpp	(working copy)
+@@ -37,7 +37,7 @@
+ HTMLFrameOwnerElement::HTMLFrameOwnerElement(const QualifiedName& tagName, Document& document)
+     : HTMLElement(tagName, document)
+     , m_contentFrame(0)
+-    , m_sandboxFlags(SandboxNone)
++    , m_sandboxFlags(SandboxOrigin)
+ {
+ }
+ 
