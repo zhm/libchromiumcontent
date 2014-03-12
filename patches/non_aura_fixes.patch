@@ -11,3 +11,17 @@ Index: ui/views/event_utils_win.cc
                          const ui::LocatedEvent& event) {
  #endif
    if (!window)
+Index: ui/views/win/hwnd_message_handler.cc
+===================================================================
+--- ui/views/win/hwnd_message_handler.cc	(revision 244503)
++++ ui/views/win/hwnd_message_handler.cc	(working copy)
+@@ -2060,8 +2060,8 @@
+     base::MessageLoop::current()->PostTask(
+         FROM_HERE,
+         base::Bind(&AddScrollStylesToWindow, hwnd()));
++  }
+ #endif
+-  }
+ }
+ 
+ void HWNDMessageHandler::OnSysCommand(UINT notification_code,
