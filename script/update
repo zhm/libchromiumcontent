@@ -22,8 +22,7 @@ def main():
             import_win_environment() or
             apply_patches() or
             copy_chromiumcontent_files() or
-            run_gyp() or
-            install_win_tool_wrapper())
+            run_gyp())
 
 
 def write_dot_gclient():
@@ -153,16 +152,6 @@ def run_gyp():
                             '--depth', REL_SRC_DIR,
                             os.path.join(REL_CHROMIUMCONTENT_DESTINATION_DIR,
                                          'chromiumcontent.gyp')])
-
-
-def install_win_tool_wrapper():
-    if sys.platform not in ['win32', 'cygwin']:
-        return
-    for config in ['Debug', 'Release']:
-        config_dir = os.path.join(SRC_DIR, 'out', config)
-        win_tool = os.path.join(config_dir, 'gyp-win-tool')
-        shutil.move(win_tool, '{0}-original'.format(win_tool))
-        shutil.copy(os.path.join(SOURCE_ROOT, 'gyp-win-tool-wrapper'), win_tool)
 
 
 def chromium_python_path():
