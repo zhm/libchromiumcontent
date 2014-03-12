@@ -1,11 +1,8 @@
 EXPORTS
 
-??$?0VMessageLoopProxy@base@@@?$scoped_refptr@VSingleThreadTaskRunner@base@@@@QAE@ABV?$scoped_refptr@VMessageLoopProxy@base@@@@@Z
 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z
 ??$_Copy_impl@PAUMediaStreamDevice@content@@PAU12@@std@@YAPAUMediaStreamDevice@content@@PAU12@00U_Nonscalar_ptr_iterator_tag@0@@Z
 ??$construct@AAUMediaStreamDevice@content@@@?$allocator@UMediaStreamDevice@content@@@std@@QAEXPAUMediaStreamDevice@content@@AAU23@@Z
-??0?$scoped_refptr@VPrefRegistrySimple@@@@QAE@PAVPrefRegistrySimple@@@Z
-??0?$scoped_refptr@VRefCountedStaticMemory@base@@@@QAE@PAVRefCountedStaticMemory@base@@@Z
 ??0CreateParams@WebContents@content@@QAE@PAVBrowserContext@2@@Z
 ??0GURL@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
 ??0MediaStreamDevice@content@@QAE@ABU01@@Z
@@ -13,10 +10,6 @@ EXPORTS
 ??0Scope@Context@v8@@QAE@V?$Handle@VContext@v8@@@2@@Z
 ??0ScopedProcessInformation@win@base@@QAE@XZ
 ??0WebContentsDelegate@content@@QAE@XZ
-??1?$scoped_refptr@VDevToolsAgentHost@content@@@@QAE@XZ
-??1?$scoped_refptr@VPrefRegistrySimple@@@@QAE@XZ
-??1?$scoped_refptr@VRefCountedStaticMemory@base@@@@QAE@XZ
-??1?$scoped_refptr@VSequencedTaskRunner@base@@@@QAE@XZ
 ??1BrowserContext@content@@UAE@XZ
 ??1BrowserMainParts@content@@UAE@XZ
 ??1ContentBrowserClient@content@@UAE@XZ
@@ -39,7 +32,6 @@ EXPORTS
 ??1WebUIControllerFactory@content@@UAE@XZ
 ??1WebURL@WebKit@@QAE@XZ
 ??1WindowImpl@gfx@@UAE@XZ
-??4?$scoped_refptr@VDevToolsAgentHost@content@@@@QAEAAV0@PAVDevToolsAgentHost@content@@@Z
 ??BWebURL@WebKit@@QBE?AVGURL@@XZ
 ??_H@YGXPAXIHP6EPAX0@Z@Z
 ?ActivateContents@WebContentsDelegate@content@@UAEXPAVWebContents@2@@Z
