@@ -65,6 +65,7 @@
                   'AdditionalOptions': [
                     '/WX', # Warnings as errors
                   ],
+                  'ModuleDefinitionFile': 'chromiumcontent.def',
                 },
               },
             },
