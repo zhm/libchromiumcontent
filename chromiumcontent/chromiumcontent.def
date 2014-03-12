@@ -14,20 +14,26 @@ EXPORTS
   ??0BrowserMainParts@brightray@@QAE@XZ
   ??0BundledDataSource@?A0x95d746c6@brightray@@QAE@XZ
   ??0ContentClient@brightray@@QAE@XZ
+  ??0CreateParams@WebContents@content@@QAE@PAVBrowserContext@2@@Z
   ??0DefaultWebContentsDelegate@brightray@@QAE@XZ
   ??0DevToolsUI@brightray@@QAE@PAVBrowserContext@1@PAVWebUI@content@@@Z
   ??0DevToolsWindow@brightray@@AAE@PAVInspectableWebContentsViewWin@1@@Z
   ??0DownloadManagerDelegate@brightray@@QAE@XZ
+  ??0GURL@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
   ??0InspectableWebContentsImpl@brightray@@QAE@PAVWebContents@content@@@Z
   ??0MainDelegate@brightray@@QAE@XZ
   ??0MediaCaptureDevicesDispatcher@brightray@@AAE@XZ
+  ??0MediaStreamDevice@content@@QAE@ABU01@@Z
   ??0MediaStreamDevicesController@brightray@@QAE@ABUMediaStreamRequest@content@@ABV?$Callback@$$A6AXABV?$vector@UMediaStreamDevice@content@@V?$allocator@UMediaStreamDevice@content@@@std@@@std@@V?$scoped_ptr@VMediaStreamUI@content@@U?$DefaultDeleter@VMediaStreamUI@content@@@base@@@@@Z@base@@@Z
   ??0NetworkDelegate@brightray@@QAE@XZ
+  ??0Referrer@content@@QAE@XZ
   ??0RenderViewObserver@brightray_example@@QAE@PAVRenderView@content@@@Z
   ??0RendererClient@brightray_example@@QAE@XZ
   ??0ResourceContext@BrowserContext@brightray@@QAE@XZ
   ??0Scope@Context@v8@@QAE@V?$Handle@VContext@v8@@@2@@Z
+  ??0ScopedProcessInformation@win@base@@QAE@XZ
   ??0URLRequestContextGetter@brightray@@QAE@ABVFilePath@base@@PAVMessageLoop@3@1V?$Callback@$$A6A?AV?$scoped_ptr@VNetworkDelegate@brightray@@U?$DefaultDeleter@VNetworkDelegate@brightray@@@base@@@@XZ@3@PAV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$linked_ptr@VProtocolHandler@URLRequestJobFactory@net@@@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$linked_ptr@VProtocolHandler@URLRequestJobFactory@net@@@@@std@@@2@@std@@@Z
+  ??0WebContentsDelegate@content@@QAE@XZ
   ??0WebUIControllerFactory@brightray@@QAE@PAVBrowserContext@1@@Z
   ??0Window@brightray_example@@IAE@PAVBrowserContext@brightray@@@Z
   ??0WindowWin@brightray_example@@QAE@PAVBrowserContext@brightray@@@Z
@@ -36,21 +42,37 @@ EXPORTS
   ??1?$scoped_refptr@VRefCountedStaticMemory@base@@@@QAE@XZ
   ??1?$scoped_refptr@VSequencedTaskRunner@base@@@@QAE@XZ
   ??1?$scoped_refptr@VURLRequestContextGetter@brightray@@@@QAE@XZ
+  ??1BrowserContext@content@@UAE@XZ
+  ??1BrowserMainParts@content@@UAE@XZ
   ??1BundledDataSource@?A0x95d746c6@brightray@@EAE@XZ
+  ??1ContentBrowserClient@content@@UAE@XZ
   ??1ContentClient@brightray@@UAE@XZ
+  ??1ContentMainDelegate@content@@UAE@XZ
+  ??1CreateParams@WebContents@content@@QAE@XZ
   ??1DefaultWebContentsDelegate@brightray@@UAE@XZ
   ??1DownloadManagerDelegate@brightray@@UAE@XZ
+  ??1GURL@@QAE@XZ
   ??1InspectableWebContentsViewWin@brightray@@UAE@XZ
+  ??1MediaStreamDevice@content@@QAE@XZ
+  ??1MediaStreamRequest@content@@QAE@XZ
   ??1NetworkDelegate@brightray@@UAE@XZ
   ??1Receiver@ScopedProcessInformation@win@base@@QAE@XZ
+  ??1Referrer@content@@QAE@XZ
   ??1RenderViewObserver@brightray_example@@EAE@XZ
   ??1RendererClient@brightray_example@@UAE@XZ
   ??1ResourceContext@BrowserContext@brightray@@UAE@XZ
   ??1Scope@Context@v8@@QAE@XZ
+  ??1ScopedProcessInformation@win@base@@QAE@XZ
   ??1TargetProcess@sandbox@@QAE@XZ
+  ??1URLRequestContextGetter@net@@MAE@XZ
+  ??1WebContentsDelegate@content@@MAE@XZ
+  ??1WebContentsObserver@content@@MAE@XZ
   ??1WebNode@WebKit@@UAE@XZ
   ??1WebString@WebKit@@QAE@XZ
+  ??1WebUIController@content@@UAE@XZ
+  ??1WebUIControllerFactory@content@@UAE@XZ
   ??1WebURL@WebKit@@QAE@XZ
+  ??1WindowImpl@gfx@@UAE@XZ
   ??4?$scoped_refptr@VDevToolsAgentHost@content@@@@QAEAAV0@PAVDevToolsAgentHost@content@@@Z
   ??4?$scoped_refptr@VURLRequestContextGetter@brightray@@@@QAEAAV0@PAVURLRequestContextGetter@brightray@@@Z
   ??BWebURL@WebKit@@QBE?AVGURL@@XZ
@@ -108,10 +130,12 @@ EXPORTS
   ?CloseContents@WebContentsDelegate@content@@UAEXPAVWebContents@2@@Z
   ?ClosePage@RenderViewObserver@content@@UAEXXZ
   ?ConstructorTemplate@?A0xcf692e62@brightray_example@@YA?AV?$Local@VObjectTemplate@v8@@@v8@@XZ
+  ?ContentMain@content@@YAHPAUHINSTANCE__@@PAUSandboxInterfaceInfo@sandbox@@PAVContentMainDelegate@1@@Z
   ?ContentsMouseEvent@WebContentsDelegate@content@@UAEXPAVWebContents@2@ABVPoint@gfx@@_N@Z
   ?ContentsZoomChange@WebContentsDelegate@content@@UAEX_N@Z
   ?Create@InspectableWebContents@brightray@@SAPAV12@ABUCreateParams@WebContents@content@@@Z
   ?Create@TargetProcess@sandbox@@QAEKPB_W0_NABVStartupInformation@win@base@@PAVScopedProcessInformation@45@@Z
+  ?Create@WebContents@content@@SAPAV12@ABUCreateParams@12@@Z
   ?CreateAccessTokenStore@ContentBrowserClient@content@@UAEPAVAccessTokenStore@2@XZ
   ?CreateBackend@DefaultBackend@HttpCache@net@@UAEHPAVNetLog@3@PAV?$scoped_ptr@VBackend@disk_cache@@U?$DefaultDeleter@VBackend@disk_cache@@@base@@@@ABV?$Callback@$$A6AXH@Z@base@@@Z
   ?CreateClientCertStore@ResourceContext@content@@UAE?AV?$scoped_ptr@VClientCertStore@net@@U?$DefaultDeleter@VClientCertStore@net@@@base@@@@XZ
@@ -127,6 +151,7 @@ EXPORTS
   ?CreateSelectFilePolicy@ContentBrowserClient@content@@UAEPAVSelectFilePolicy@ui@@PAVWebContents@2@@Z
   ?CreateTransaction@HttpCache@net@@UAEHW4RequestPriority@2@PAV?$scoped_ptr@VHttpTransaction@net@@U?$DefaultDeleter@VHttpTransaction@net@@@base@@@@PAVHttpTransactionDelegate@2@@Z
   ?CreateWorkerPermissionClientProxy@ContentRendererClient@content@@UAEPAVWebWorkerPermissionClientProxy@WebKit@@PAVRenderView@2@PAVWebFrame@4@@Z
+  ?CurrentlyOn@BrowserThread@content@@SA_NW4ID@12@@Z
   ?DeactivateContents@WebContentsDelegate@content@@UAEXPAVWebContents@2@@Z
   ?DeferMediaLoad@ContentRendererClient@content@@UAEXPAVRenderView@2@ABV?$Callback@$$A6AXXZ@base@@@Z
   ?DeleteAll@DefaultServerBoundCertStore@net@@UAEXABV?$Callback@$$A6AXXZ@base@@@Z
@@ -194,6 +219,7 @@ EXPORTS
   ?FrameDetached@WebContentsObserver@content@@UAEXPAVRenderViewHost@2@_J@Z
   ?FrameWillClose@RenderViewObserver@content@@UAEXPAVWebFrame@WebKit@@@Z
   ?GenerateFileHash@DownloadManagerDelegate@content@@UAE_NXZ
+  ?Get@PathService@@SA_NHPAVFilePath@base@@@Z
   ?GetAcceptLangs@ContentBrowserClient@content@@UAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVBrowserContext@2@@Z
   ?GetAcceptLanguage@StaticHttpUserAgentSettings@net@@UBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
   ?GetAdditionalAllowedSchemesForFileSystem@ContentBrowserClient@content@@UAEXPAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@Z
@@ -204,6 +230,7 @@ EXPORTS
   ?GetApplicationLocale@ContentBrowserClient@content@@UAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
   ?GetApplicationName@brightray@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
   ?GetAudioCaptureDevices@MediaCaptureDevicesDispatcher@brightray@@QAEABV?$vector@UMediaStreamDevice@content@@V?$allocator@UMediaStreamDevice@content@@@std@@@std@@XZ
+  ?GetBlockingPool@BrowserThread@content@@SAPAVSequencedWorkerPool@base@@XZ
   ?GetCache@HttpCache@net@@UAEPAV12@XZ
   ?GetCanonicalEncodingNameByAliasName@ContentBrowserClient@content@@UAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV34@@Z
   ?GetCertCount@DefaultServerBoundCertStore@net@@UAEHXZ
@@ -221,6 +248,7 @@ EXPORTS
   ?GetExtraRenderViewHeight@WebContentsDelegate@content@@UBEHXZ
   ?GetJavaScriptDialogManager@WebContentsDelegate@content@@UAEPAVJavaScriptDialogManager@2@XZ
   ?GetLocalizedString@ContentClient@content@@UBE?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@H@Z
+  ?GetMessageLoopProxyForThread@BrowserThread@content@@SA?AV?$scoped_refptr@VMessageLoopProxy@base@@@@W4ID@12@@Z
   ?GetNativeImageNamed@ContentClient@brightray@@EBEAAVImage@gfx@@H@Z
   ?GetNavigationErrorStrings@ContentRendererClient@content@@UAEXPAVWebFrame@WebKit@@ABVWebURLRequest@4@ABUWebURLError@4@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAV78@PAV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@8@@Z
   ?GetNetLog@ContentBrowserClient@content@@UAEPAVNetLog@net@@XZ
@@ -239,6 +267,7 @@ EXPORTS
   ?GetSaveDir@DownloadManagerDelegate@content@@UAEXPAVBrowserContext@2@PAVFilePath@base@@1PA_N@Z
   ?GetServerBoundCert@DefaultServerBoundCertStore@net@@UAEHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVTime@base@@PAV34@2ABV?$Callback@$$A6AXHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VTime@base@@00@Z@6@@Z
   ?GetSession@HttpCache@net@@UAEPAVHttpNetworkSession@2@XZ
+  ?GetSharedInstance@ResourceBundle@ui@@SAAAV12@XZ
   ?GetSizeForNewRenderView@WebContentsDelegate@content@@UBE?AVSize@gfx@@PBVWebContents@2@@Z
   ?GetSpdySettings@HttpServerPropertiesImpl@net@@UBEABV?$map@W4SpdySettingsIds@net@@U?$pair@W4SpdySettingsFlags@net@@I@std@@U?$less@W4SpdySettingsIds@net@@@4@V?$allocator@U?$pair@$$CBW4SpdySettingsIds@net@@U?$pair@W4SpdySettingsFlags@net@@I@std@@@std@@@4@@std@@ABVHostPortPair@2@@Z
   ?GetSpeechRecognitionManagerDelegate@ContentBrowserClient@content@@UAEPAVSpeechRecognitionManagerDelegate@2@XZ
@@ -353,9 +382,11 @@ EXPORTS
   ?PrintPage@RenderViewObserver@content@@UAEXPAVWebFrame@WebKit@@_N@Z
   ?ProcessExiting@ContentMainDelegate@content@@UAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
   ?ProvisionalChangeToMainFrameUrl@WebContentsObserver@content@@UAEXABVGURL@@PAVRenderViewHost@2@@Z
+  ?Receive@ScopedProcessInformation@win@base@@QAE?AVReceiver@123@XZ
   ?RegisterPrefs@InspectableWebContentsImpl@brightray@@SAXPAVPrefRegistrySimple@@@Z
   ?RegisterProtocolHandler@WebContentsDelegate@content@@UAEXPAVWebContents@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABVGURL@@ABV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@5@_N@Z
   ?RegisterWindowClass@WindowWin@brightray_example@@CAXXZ
+  ?Release@?$RefCountedThreadSafe@VTaskRunner@base@@UTaskRunnerTraits@2@@base@@QBEXXZ
   ?RenderProcessGone@WebContentsObserver@content@@UAEXW4TerminationStatus@base@@@Z
   ?RenderProcessHostCreated@ContentBrowserClient@content@@UAEXPAVRenderProcessHost@2@@Z
   ?RenderThreadStarted@ContentRendererClient@content@@UAEXXZ
@@ -383,6 +414,7 @@ EXPORTS
   ?SelectClientCertificate@ContentBrowserClient@content@@UAEXHHPBVHttpNetworkSession@net@@PAVSSLCertRequestInfo@4@ABV?$Callback@$$A6AXPAVX509Certificate@net@@@Z@base@@@Z
   ?Send@RenderViewObserver@content@@UAE_NPAVMessage@IPC@@@Z
   ?Send@WebContentsObserver@content@@UAE_NPAVMessage@IPC@@@Z
+  ?Set@ScopedProcessInformation@win@base@@QAEXABU_PROCESS_INFORMATION@@@Z
   ?SetActiveURL@ContentClient@content@@UAEXABVGURL@@@Z
   ?SetAlternateProtocol@HttpServerPropertiesImpl@net@@UAEXABVHostPortPair@2@GW4AlternateProtocol@2@@Z
   ?SetBrokenAlternateProtocol@HttpServerPropertiesImpl@net@@UAEXABVHostPortPair@2@@Z
@@ -430,6 +462,7 @@ EXPORTS
   ?SupportsBrowserPlugin@ContentBrowserClient@content@@UAE_NPAVBrowserContext@2@ABVGURL@@@Z
   ?SupportsSpdy@HttpServerPropertiesImpl@net@@UBE_NABVHostPortPair@2@@Z
   ?SwappedOut@WebContentsDelegate@content@@UAEXPAVWebContents@2@@Z
+  ?Take@ScopedProcessInformation@win@base@@QAE?AU_PROCESS_INFORMATION@@XZ
   ?TakeAction@MediaStreamDevicesController@brightray@@QAE_NXZ
   ?TakeFocus@WebContentsDelegate@content@@UAE_NPAVWebContents@2@_N@Z
   ?TitleWasSet@WebContentsObserver@content@@UAEXPAVNavigationEntry@2@_N@Z
@@ -439,6 +472,7 @@ EXPORTS
   ?UpdateFrontendDockSide@InspectableWebContentsImpl@brightray@@AAEXXZ
   ?UpdateInspectorSetting@ContentBrowserClient@content@@UAEXPAVRenderViewHost@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@1@Z
   ?UpdatePreferredSize@WebContentsDelegate@content@@UAEXPAVWebContents@2@ABVSize@gfx@@@Z
+  ?UpdateProcThreadAttribute@StartupInformation@win@base@@QAE_NKPAXI@Z
   ?UpdateTargetURL@WebContentsDelegate@content@@UAEXPAVWebContents@2@HABVGURL@@@Z
   ?UserAgentOverrideSet@WebContentsObserver@content@@UAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
   ?ViewSourceForFrame@WebContentsDelegate@content@@UAEXPAVWebContents@2@ABVGURL@@ABVPageState@2@@Z
@@ -462,46 +496,12 @@ EXPORTS
   ?ZoomLevelChanged@RenderViewObserver@content@@UAEXXZ
   ?alternate_protocol_map@HttpServerPropertiesImpl@net@@UBEABV?$map@VHostPortPair@net@@UPortAlternateProtocolPair@2@U?$less@VHostPortPair@net@@@std@@V?$allocator@U?$pair@$$CBVHostPortPair@net@@UPortAlternateProtocolPair@2@@std@@@5@@std@@XZ
   ?host_resolver@URLRequestContextGetter@brightray@@QAEPAVHostResolver@net@@XZ
+  ?hwnd@WindowImpl@gfx@@QBEPAUHWND__@@XZ
   ?isEmpty@WebString@WebKit@@QBE_NXZ
+  ?kDataScheme@chrome@@3QBDB
+  ?kFileScheme@chrome@@3QBDB
+  ?kNoWebUI@WebUI@content@@2QAXA
+  ?path@GURL@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+  ?process_handle@ScopedProcessInformation@win@base@@QBEPAXXZ
   ?spdy_settings_map@HttpServerPropertiesImpl@net@@UBEABV?$map@VHostPortPair@net@@V?$map@W4SpdySettingsIds@net@@U?$pair@W4SpdySettingsFlags@net@@I@std@@U?$less@W4SpdySettingsIds@net@@@4@V?$allocator@U?$pair@$$CBW4SpdySettingsIds@net@@U?$pair@W4SpdySettingsFlags@net@@I@std@@@std@@@4@@std@@U?$less@VHostPortPair@net@@@4@V?$allocator@U?$pair@$$CBVHostPortPair@net@@V?$map@W4SpdySettingsIds@net@@U?$pair@W4SpdySettingsFlags@net@@I@std@@U?$less@W4SpdySettingsIds@net@@@4@V?$allocator@U?$pair@$$CBW4SpdySettingsIds@net@@U?$pair@W4SpdySettingsFlags@net@@I@std@@@std@@@4@@std@@@std@@@4@@std@@XZ
-  __imp_??0CreateParams@WebContents@content@@QAE@PAVBrowserContext@2@@Z
-  __imp_??0GURL@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-  __imp_??0MediaStreamDevice@content@@QAE@ABU01@@Z
-  __imp_??0Referrer@content@@QAE@XZ
-  __imp_??0ScopedProcessInformation@win@base@@QAE@XZ
-  __imp_??0WebContentsDelegate@content@@QAE@XZ
-  __imp_??1BrowserContext@content@@UAE@XZ
-  __imp_??1BrowserMainParts@content@@UAE@XZ
-  __imp_??1ContentBrowserClient@content@@UAE@XZ
-  __imp_??1ContentMainDelegate@content@@UAE@XZ
-  __imp_??1CreateParams@WebContents@content@@QAE@XZ
-  __imp_??1GURL@@QAE@XZ
-  __imp_??1MediaStreamDevice@content@@QAE@XZ
-  __imp_??1MediaStreamRequest@content@@QAE@XZ
-  __imp_??1Referrer@content@@QAE@XZ
-  __imp_??1ScopedProcessInformation@win@base@@QAE@XZ
-  __imp_??1URLRequestContextGetter@net@@MAE@XZ
-  __imp_??1WebContentsDelegate@content@@MAE@XZ
-  __imp_??1WebContentsObserver@content@@MAE@XZ
-  __imp_??1WebUIController@content@@UAE@XZ
-  __imp_??1WebUIControllerFactory@content@@UAE@XZ
-  __imp_??1WindowImpl@gfx@@UAE@XZ
-  __imp_?ContentMain@content@@YAHPAUHINSTANCE__@@PAUSandboxInterfaceInfo@sandbox@@PAVContentMainDelegate@1@@Z
-  __imp_?Create@WebContents@content@@SAPAV12@ABUCreateParams@12@@Z
-  __imp_?CurrentlyOn@BrowserThread@content@@SA_NW4ID@12@@Z
-  __imp_?Get@PathService@@SA_NHPAVFilePath@base@@@Z
-  __imp_?GetBlockingPool@BrowserThread@content@@SAPAVSequencedWorkerPool@base@@XZ
-  __imp_?GetMessageLoopProxyForThread@BrowserThread@content@@SA?AV?$scoped_refptr@VMessageLoopProxy@base@@@@W4ID@12@@Z
-  __imp_?GetSharedInstance@ResourceBundle@ui@@SAAAV12@XZ
-  __imp_?Receive@ScopedProcessInformation@win@base@@QAE?AVReceiver@123@XZ
-  __imp_?Release@?$RefCountedThreadSafe@VTaskRunner@base@@UTaskRunnerTraits@2@@base@@QBEXXZ
-  __imp_?Set@ScopedProcessInformation@win@base@@QAEXABU_PROCESS_INFORMATION@@@Z
-  __imp_?Take@ScopedProcessInformation@win@base@@QAE?AU_PROCESS_INFORMATION@@XZ
-  __imp_?UpdateProcThreadAttribute@StartupInformation@win@base@@QAE_NKPAXI@Z
-  __imp_?hwnd@WindowImpl@gfx@@QBEPAUHWND__@@XZ
-  __imp_?kDataScheme@chrome@@3QBDB
-  __imp_?kFileScheme@chrome@@3QBDB
-  __imp_?kNoWebUI@WebUI@content@@2QAXA
-  __imp_?path@GURL@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
-  __imp_?process_handle@ScopedProcessInformation@win@base@@QBEPAXXZ
-  __imp_?thread_handle@ScopedProcessInformation@win@base@@QBEPAXXZ
+  ?thread_handle@ScopedProcessInformation@win@base@@QBEPAXXZ
