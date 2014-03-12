@@ -9,6 +9,8 @@
     'linux_use_tcmalloc': 0,
     'conditions': [
       ['OS=="win"', {
+        'use_aura': 0,
+
         # Chrome turns this off for component builds, and we need to too. Leaving
         # it on would result in both the Debug and Release CRTs being included in
         # the library.
@@ -22,7 +24,6 @@
   'target_defaults': {
     'defines': [
       'ANGLE_TRANSLATOR_IMPLEMENTATION',
-      'AURA_IMPLEMENTATION',
       'BASE_I18N_IMPLEMENTATION',
       'BASE_IMPLEMENTATION',
       'BASE_PREFS_IMPLEMENTATION',
