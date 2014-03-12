@@ -192,7 +192,7 @@ def is_newer(destination, source):
 def GetDesiredVsToolchainHashes():
   """Load a list of SHA1s corresponding to the toolchains that we want installed
   to build with."""
-  sha1path = os.path.join(script_dir, 'toolchain_vs2013.hash')
+  sha1path = os.path.join(SOURCE_ROOT, 'script', 'toolchain_vs2013.hash')
   with open(sha1path, 'rb') as f:
     return f.read().strip().splitlines()
 
@@ -205,16 +205,12 @@ def DownloadVsToolChain():
   the x64 and x86 paths. Otherwise return None.
   """
   vs2013_runtime_dll_dirs = None
-  depot_tools_win_toolchain = \
-      bool(int(os.environ.get('DEPOT_TOOLS_WIN_TOOLCHAIN', '1')))
-  if sys.platform in ('win32', 'cygwin') and depot_tools_win_toolchain:
-    import find_depot_tools
-    depot_tools_path = find_depot_tools.add_depot_tools_to_path()
+  if sys.platform in ('win32', 'cygwin'):
     temp_handle, data_file = tempfile.mkstemp(suffix='.json')
     os.close(temp_handle)
     get_toolchain_args = [
         sys.executable,
-        os.path.join(depot_tools_path,
+        os.path.join(DEPOT_TOOLS_DIR,
                     'win_toolchain',
                     'get_toolchain_if_necessary.py'),
         '--output-json', data_file,
@@ -241,7 +237,7 @@ def DownloadVsToolChain():
     # toolchain values in GYP_DEFINES, but don't want to override any
     # otheroptions.express
     # values there.
-    gyp_defines_dict = gyp.NameValueListToDict(gyp.ShlexEnv('GYP_DEFINES'))
+    gyp_defines_dict = dict(map(shlex.split(os.environ.get('GYP_DEFINES', '')), lambda x: x.split('=')))
     gyp_defines_dict['windows_sdk_path'] = win8sdk
     os.environ['GYP_DEFINES'] = ' '.join('%s=%s' % (k, pipes.quote(str(v)))
         for k, v in gyp_defines_dict.iteritems())
