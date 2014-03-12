@@ -3,6 +3,7 @@
 import errno
 import json
 import os
+import pipes
 import shlex
 import shutil
 import subprocess
