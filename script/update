@@ -215,7 +215,7 @@ def DownloadVsToolChain():
     # toolchain values in GYP_DEFINES, but don't want to override any
     # otheroptions.express
     # values there.
-    gyp_defines_dict = dict(map(shlex.split(os.environ.get('GYP_DEFINES', '')), lambda x: x.split('=')))
+    gyp_defines_dict = dict(map(shlex.split(lambda x: x.split('='), os.environ.get('GYP_DEFINES', ''))))
     gyp_defines_dict['windows_sdk_path'] = win8sdk
     os.environ['GYP_DEFINES'] = ' '.join('%s=%s' % (k, pipes.quote(str(v)))
         for k, v in gyp_defines_dict.iteritems())
