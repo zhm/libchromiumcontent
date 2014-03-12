@@ -33,7 +33,6 @@
       'BUILDING_V8_SHARED',
       'CC_IMPLEMENTATION',
       'COMPONENT_BUILD',
-      'COMPOSITOR_IMPLEMENTATION',
       'CONTENT_IMPLEMENTATION',
       'CRYPTO_IMPLEMENTATION',
       'EVENTS_IMPLEMENTATION',
@@ -125,6 +124,7 @@
       }],
       ['_target_name in ["views", "webview", "web_dialogs"]', {
         'defines': [
+          'COMPOSITOR_IMPLEMENTATION',
           'VIEWS_IMPLEMENTATION',
           'WEBVIEW_IMPLEMENTATION',
           'WEB_DIALOGS_IMPLEMENTATION',
