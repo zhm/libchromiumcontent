@@ -93,6 +93,9 @@
     'msvs_settings': {
       'VCCLCompilerTool': {
         'ExceptionHandling': '1',  # /EHsc
+        'AdditionalOptions': [
+          '/FS', # Added automatically by newer versions of gyp for VS2013.
+        ],
       },
     },
     'xcode_settings': {
