@@ -1,0 +1,13 @@
+Index: ui/views/event_utils_win.cc
+===================================================================
+--- ui/views/event_utils_win.cc	(revision 244503)
++++ ui/views/event_utils_win.cc	(working copy)
+@@ -17,7 +17,7 @@
+ bool RepostLocatedEventWin(HWND window,
+                            const ui::LocatedEvent& event) {
+ #else
+-bool RepostLocatedEvent(gfx::NativeWindow window
++bool RepostLocatedEvent(gfx::NativeWindow window,
+                         const ui::LocatedEvent& event) {
+ #endif
+   if (!window)
