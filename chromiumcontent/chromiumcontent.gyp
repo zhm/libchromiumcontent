@@ -57,6 +57,7 @@
         ['OS=="win"', {
           'sources': [
             '<(DEPTH)/base/win/dllmain.cc',
+            'chromiumcontent.def',
           ],
           'configurations': {
             'Common_Base': {
@@ -65,7 +66,6 @@
                   'AdditionalOptions': [
                     '/WX', # Warnings as errors
                   ],
-                  'ModuleDefinitionFile': 'chromiumcontent.def',
                 },
               },
             },
