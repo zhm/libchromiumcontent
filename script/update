@@ -189,8 +189,8 @@ def DownloadVsToolChain():
     os.close(temp_handle)
     get_toolchain_args = [
         sys.executable,
-        os.path.join(DEPOT_TOOLS_DIR,
-                    'win_toolchain',
+        os.path.join(SOURCE_ROOT,
+                    'script',
                     'get_toolchain_if_necessary.py'),
         '--output-json', data_file,
       ] + GetDesiredVsToolchainHashes()
