@@ -37,9 +37,9 @@ import sys
 import time
 
 
-BASEDIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(BASEDIR, '..'))
-import download_from_google_storage
+SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+VENDOR_DIR = os.path.join(SOURCE_ROOT, 'vendor')
+DEPOT_TOOLS_DIR = os.path.join(VENDOR_DIR, 'depot_tools')
 
 
 GetFileAttributes = ctypes.windll.kernel32.GetFileAttributesW
@@ -133,44 +133,6 @@ def HaveSrcInternalAccess():
         shell=True, stdin=nul, stdout=nul, stderr=nul) == 0
 
 
-def LooksLikeGoogler():
-  """Checks for a USERDOMAIN environment variable of 'GOOGLE', which
-  probably implies the current user is a Googler."""
-  return os.environ.get('USERDOMAIN').upper() == 'GOOGLE'
-
-
-def CanAccessToolchainBucket():
-  """Checks whether the user has access to gs://chrome-wintoolchain/."""
-  gsutil = download_from_google_storage.Gsutil(
-      download_from_google_storage.GSUTIL_DEFAULT_PATH, boto_path=None)
-  code, _, _ = gsutil.check_call('ls', 'gs://chrome-wintoolchain/')
-  return code == 0
-
-
-def RequestGsAuthentication():
-  """Requests that the user authenticate to be able to access gs:// as a
-  Googler. This allows much faster downloads, and pulling (old) toolchains
-  that match src/ revisions.
-  """
-  print 'Access to gs://chrome-wintoolchain/ not configured.'
-  print '-----------------------------------------------------------------'
-  print
-  print 'You appear to be a Googler.'
-  print
-  print 'I\'m sorry for the hassle, but you need to do a one-time manual'
-  print 'authentication. Please run:'
-  print
-  print '    download_from_google_storage --config'
-  print
-  print 'and follow the instructions. NOTE: Just press Enter when asked for'
-  print 'a "project-id".'
-  print
-  print '-----------------------------------------------------------------'
-  print
-  sys.stdout.flush()
-  sys.exit(1)
-
-
 def DelayBeforeRemoving(target_dir):
   """A grace period before deleting the out of date toolchain directory."""
   if (os.path.isdir(target_dir) and
@@ -199,7 +161,7 @@ def main():
 
   # Move to depot_tools\win_toolchain where we'll store our files, and where
   # the downloader script is.
-  os.chdir(os.path.normpath(os.path.join(BASEDIR)))
+  os.chdir(os.path.normpath(os.path.join(DEPOT_TOOLS_DIR, 'win_toolchain')))
   toolchain_dir = '.'
   target_dir = os.path.normpath(os.path.join(toolchain_dir, 'vs2013_files'))
 
@@ -209,13 +171,7 @@ def main():
   # based on timestamps to make that case fast.
   current_hash = CalculateHash(target_dir)
   if current_hash not in desired_hashes:
-    should_use_gs = False
-    if HaveSrcInternalAccess() or LooksLikeGoogler():
-      should_use_gs = True
-      if not CanAccessToolchainBucket():
-        RequestGsAuthentication()
-    print('Windows toolchain out of date or doesn\'t exist, updating (%s)...' %
-          ('Pro' if should_use_gs else 'Express'))
+    print('Windows toolchain out of date or doesn\'t exist, updating (Pro)...')
     print('  current_hash: %s' % current_hash)
     print('  desired_hashes: %s' % ', '.join(desired_hashes))
     sys.stdout.flush()
@@ -230,10 +186,6 @@ def main():
             'toolchain2013.py',
             '--targetdir', target_dir,
             '--sha1', desired_hashes[0]]
-    if should_use_gs:
-      args.append('--use-gs')
-    else:
-      args.append('--express')
     subprocess.check_call(args)
     current_hash = CalculateHash(target_dir)
     if current_hash not in desired_hashes:
