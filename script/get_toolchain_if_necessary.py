@@ -37,7 +37,9 @@ import sys
 import time
 
 
-BASEDIR = os.path.dirname(os.path.abspath(__file__))
+SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+VENDOR_DIR = os.path.join(SOURCE_ROOT, 'vendor')
+DEPOT_TOOLS_DIR = os.path.join(VENDOR_DIR, 'depot_tools')
 
 
 GetFileAttributes = ctypes.windll.kernel32.GetFileAttributesW
@@ -117,20 +119,6 @@ def SaveTimestampsAndHash(root, sha1):
     json.dump(timestamps_data, f)
 
 
-def HaveSrcInternalAccess():
-  """Checks whether access to src-internal is available."""
-  with open(os.devnull, 'w') as nul:
-    if subprocess.call(
-        ['svn', 'ls', '--non-interactive',
-         'svn://svn.chromium.org/chrome-internal/trunk/src-internal/'],
-        shell=True, stdin=nul, stdout=nul, stderr=nul) == 0:
-      return True
-    return subprocess.call(
-        ['git', '-c', 'core.askpass=true', 'remote', 'show',
-         'https://chrome-internal.googlesource.com/chrome/src-internal/'],
-        shell=True, stdin=nul, stdout=nul, stderr=nul) == 0
-
-
 def DelayBeforeRemoving(target_dir):
   """A grace period before deleting the out of date toolchain directory."""
   if (os.path.isdir(target_dir) and
@@ -156,7 +144,7 @@ def main():
 
   # Move to depot_tools\win_toolchain where we'll store our files, and where
   # the downloader script is.
-  os.chdir(os.path.normpath(os.path.join(BASEDIR)))
+  os.chdir(os.path.normpath(os.path.join(DEPOT_TOOLS_DIR, 'win_toolchain')))
   toolchain_dir = '.'
   target_dir = os.path.normpath(os.path.join(toolchain_dir, 'vs2013_files'))
 
@@ -166,8 +154,7 @@ def main():
   # based on timestamps to make that case fast.
   current_hash = CalculateHash(target_dir)
   if current_hash not in desired_hashes:
-    should_get_pro = (os.path.isfile(os.path.join(BASEDIR, '.vspro')) or
-                      HaveSrcInternalAccess())
+    should_get_pro = True
     print('Windows toolchain out of date or doesn\'t exist, updating (%s)...' %
           ('Pro' if should_get_pro else 'Express'))
     print('  current_hash: %s' % current_hash)
