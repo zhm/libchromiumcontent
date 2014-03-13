@@ -37,9 +37,7 @@ import sys
 import time
 
 
-SOURCE_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-VENDOR_DIR = os.path.join(SOURCE_ROOT, 'vendor')
-DEPOT_TOOLS_DIR = os.path.join(VENDOR_DIR, 'depot_tools')
+BASEDIR = os.path.dirname(os.path.abspath(__file__))
 
 
 GetFileAttributes = ctypes.windll.kernel32.GetFileAttributesW
@@ -154,14 +152,11 @@ def main():
                     help='write information about toolchain to FILE')
   options, args = parser.parse_args()
 
-  # We assume that the Pro hash is the first one.
-  desired_hashes = args
-  if len(desired_hashes) == 0:
-    sys.exit('Desired hashes are required.')
+  desired_hashes = set(args)
 
   # Move to depot_tools\win_toolchain where we'll store our files, and where
   # the downloader script is.
-  os.chdir(os.path.normpath(os.path.join(DEPOT_TOOLS_DIR, 'win_toolchain')))
+  os.chdir(os.path.normpath(os.path.join(BASEDIR)))
   toolchain_dir = '.'
   target_dir = os.path.normpath(os.path.join(toolchain_dir, 'vs2013_files'))
 
@@ -171,10 +166,12 @@ def main():
   # based on timestamps to make that case fast.
   current_hash = CalculateHash(target_dir)
   if current_hash not in desired_hashes:
-    print('Windows toolchain out of date or doesn\'t exist, updating (Pro)...')
+    should_get_pro = (os.path.isfile(os.path.join(BASEDIR, '.vspro')) or
+                      HaveSrcInternalAccess())
+    print('Windows toolchain out of date or doesn\'t exist, updating (%s)...' %
+          ('Pro' if should_get_pro else 'Express'))
     print('  current_hash: %s' % current_hash)
-    print('  desired_hashes: %s' % ', '.join(desired_hashes))
-    sys.stdout.flush()
+    print('  desired_hashes: %s' % desired_hashes)
     DelayBeforeRemoving(target_dir)
     # This stays resident and will make the rmdir below fail.
     with open(os.devnull, 'wb') as nul:
@@ -184,15 +181,16 @@ def main():
       subprocess.check_call('rmdir /s/q "%s"' % target_dir, shell=True)
     args = [sys.executable,
             'toolchain2013.py',
-            '--targetdir', target_dir,
-            '--sha1', desired_hashes[0]]
+            '--targetdir', target_dir]
+    if not should_get_pro:
+      args.append('--express')
     subprocess.check_call(args)
     current_hash = CalculateHash(target_dir)
     if current_hash not in desired_hashes:
       print >> sys.stderr, (
           'Got wrong hash after pulling a new toolchain. '
           'Wanted one of \'%s\', got \'%s\'.' % (
-              ', '.join(desired_hashes), current_hash))
+              desired_hashes, current_hash))
       return 1
     SaveTimestampsAndHash(target_dir, current_hash)
 
