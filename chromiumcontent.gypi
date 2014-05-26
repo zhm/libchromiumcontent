@@ -23,16 +23,22 @@
   },
   'target_defaults': {
     'defines': [
+      'ANGLE_TRANSLATOR_IMPLEMENTATION',
+      'AURA_IMPLEMENTATION',
       'BASE_I18N_IMPLEMENTATION',
       'BASE_IMPLEMENTATION',
       'BASE_PREFS_IMPLEMENTATION',
       'BLINK_COMMON_IMPLEMENTATION',
+      'BLINK_PLATFORM_IMPLEMENTATION',
       'BUILDING_V8_SHARED',
       'CC_IMPLEMENTATION',
       'COMPILER_IMPLEMENTATION',
       'COMPONENT_BUILD',
+      'COMPOSITOR_IMPLEMENTATION',
       'CONTENT_IMPLEMENTATION',
       'CRYPTO_IMPLEMENTATION',
+      'EVENTS_IMPLEMENTATION',
+      'GFX_IMPLEMENTATION',
       'GL_IMPLEMENTATION',
       'GLES2_C_LIB_IMPLEMENTATION',
       'GLES2_IMPL_IMPLEMENTATION',
@@ -113,9 +119,8 @@
           'URL_IMPLEMENTATION',
         ],
       }],
-      ['_target_name in ["compositor", "views", "webview", "web_dialogs"]', {
+      ['_target_name in ["views", "webview", "web_dialogs"]', {
         'defines': [
-          'COMPOSITOR_IMPLEMENTATION',
           'VIEWS_IMPLEMENTATION',
           'WEBVIEW_IMPLEMENTATION',
           'WEB_DIALOGS_IMPLEMENTATION',
