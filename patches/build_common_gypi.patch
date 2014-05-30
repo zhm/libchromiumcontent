@@ -1,0 +1,13 @@
+Index: build/common.gypi
+===================================================================
+--- build/common.gypi	(revision 273293)
++++ build/common.gypi	(working copy)
+@@ -4328,7 +4328,7 @@
+                 '-Wno-deprecated-register',
+
+                 # TODO(thakis): Remove, http://crbug.com/341352
+-                '-Wno-absolute-value',
++                # '-Wno-absolute-value',
+               ],
+
+               'conditions': [
