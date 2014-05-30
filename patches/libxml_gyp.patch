@@ -1,0 +1,20 @@
+Index: third_party/libxml/libxml.gyp
+===================================================================
+--- third_party/libxml/libxml.gyp	(revision 273293)
++++ third_party/libxml/libxml.gyp	(working copy)
+@@ -244,13 +244,13 @@
+                   # suppress the warning:
+                   '-Wno-empty-body',
+                   # debugXML.c compares array 'arg' to NULL.
+-                  '-Wno-tautological-pointer-compare',
++                  # '-Wno-tautological-pointer-compare',
+                 ],
+               },
+               'cflags': [
+                 '-Wno-pointer-sign',
+                 '-Wno-empty-body',
+-                '-Wno-tautological-pointer-compare',
++                # '-Wno-tautological-pointer-compare',
+
+                 # See http://crbug.com/138571#c8
+                 '-Wno-ignored-attributes',
