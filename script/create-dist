@@ -114,6 +114,7 @@ INCLUDE_DIRS = [
     'third_party/WebKit/public',
     'third_party/icu/source',
     'third_party/skia/include',
+    'third_party/skia/src/ports',
     'third_party/wtl/include',
     'ui',
     'url',
