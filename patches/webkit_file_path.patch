@@ -1,12 +1,12 @@
 Index: third_party/WebKit/Source/core/fileapi/File.idl
 ===================================================================
---- third_party/WebKit/Source/core/fileapi/File.idl	(revision 153022)
+--- third_party/WebKit/Source/core/fileapi/File.idl	(revision 174108)
 +++ third_party/WebKit/Source/core/fileapi/File.idl	(working copy)
-@@ -24,6 +24,7 @@
-  */
- 
- interface File : Blob {
+@@ -27,6 +27,7 @@
+     CustomConstructor(sequence<any> blobParts, DOMString fileName, optional BlobPropertyBag options),
+     GlobalContext=Window&WorkerGlobalScope,
+ ] interface File : Blob {
 +    readonly attribute DOMString path;
      readonly attribute DOMString name;
-     readonly attribute Date lastModifiedDate;
-     [EnabledAtRuntime=directoryUpload] readonly attribute DOMString webkitRelativePath;
+     [Custom=Getter, MeasureAs=FileGetLastModifiedDate] readonly attribute Date lastModifiedDate;
+     [Custom=Getter, RuntimeEnabled=FileConstructor] readonly attribute long long lastModified;
