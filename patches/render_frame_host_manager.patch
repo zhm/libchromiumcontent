@@ -1,0 +1,19 @@
+Index: content/browser/frame_host/render_frame_host_manager.cc
+===================================================================
+--- content/browser/frame_host/render_frame_host_manager.cc	(revision 273293)
++++ content/browser/frame_host/render_frame_host_manager.cc	(working copy)
+@@ -817,6 +817,14 @@
+     return SiteInstance::CreateForURL(browser_context, dest_url);
+   }
+
++  // The user wants a restart of renderer process.
++  if (GetContentClient()->browser()->ShouldSwapBrowsingInstancesForNavigation(
++          render_frame_host_->GetSiteInstance(),
++          current_url,
++          dest_url)) {
++    return SiteInstance::CreateForURL(browser_context, dest_url);
++  }
++
+   // Use the current SiteInstance for same site navigations, as long as the
+   // process type is correct.  (The URL may have been installed as an app since
+   // the last time we visited it.)
