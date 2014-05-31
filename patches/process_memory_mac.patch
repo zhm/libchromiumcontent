@@ -1,8 +1,8 @@
 Index: base/process/memory_mac.mm
 ===================================================================
---- base/process/memory_mac.mm	(revision 235101)
+--- base/process/memory_mac.mm	(revision 273293)
 +++ base/process/memory_mac.mm	(working copy)
-@@ -677,8 +677,10 @@
+@@ -719,8 +719,10 @@
          << "Failed to get kCFAllocatorMallocZone allocation function.";
      context->allocate = oom_killer_cfallocator_malloc_zone;
    } else {
